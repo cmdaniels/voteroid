@@ -10,6 +10,7 @@ class MainController {
 
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
 
     $http.get('/api/polls').then(response => {
       this.polls = response.data;
@@ -23,7 +24,10 @@ class MainController {
 
   addPoll() {
     if (this.newPoll) {
-      this.$http.post('/api/polls', { name: this.newPoll });
+      this.$http.post('/api/polls', {
+        name: this.newPoll,
+        createdAt: new Date().getTime()
+      });
       this.newPoll = '';
     }
   }

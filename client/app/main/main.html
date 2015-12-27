@@ -12,11 +12,11 @@
     <div class="col-lg-12">
       <h1 class="page-header">Recent Polls:</h1>
       <ul ng-if="main.polls.length >= 12" class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in main.polls | limitTo: 12:main.polls.length-12 | orderBy: createdAt:true">
-        <li><a href="#">{{poll.name}}<button type="button" class="close" ng-click="main.deletePoll(poll)">&times;</button></a></li>
-      </ul>
+        <li><a href="#">{{poll.name}}<button type="button" class="close" ng-show="isAdmin()" ng-click="main.deletePoll(poll)">&times;</button></a></li>
+      </ul> <!-- If user is admin -->
       <ul ng-if="!(main.polls.length >= 12)" class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in main.polls | limitTo: 12 | orderBy: createdAt:true">
-        <li><a href="#">{{poll.name}}<button type="button" class="close" ng-click="main.deletePoll(poll)">&times;</button></a></li>
-      </ul>
+        <li><a href="#">{{poll.name}}<button type="button" class="close" ng-show="isAdmin()" ng-click="main.deletePoll(poll)">&times;</button></a></li>
+      </ul> <!-- If user isn't admin -->
     </div>
   </div>
 

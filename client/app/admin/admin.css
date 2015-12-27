@@ -1,4 +1,7 @@
-.trash { color:rgb(209, 91, 71); }
+.trash {
+	color: rgb(209, 91, 71);
+	font-size: 32px;
+}
 
 .user-list li {
 	display: flex;
