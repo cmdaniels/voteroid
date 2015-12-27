@@ -4,29 +4,32 @@
 
 class MainController {
 
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, Auth, socket) {
     this.$http = $http;
-    this.awesomeThings = [];
+    this.polls = [];
 
-    $http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-      socket.syncUpdates('thing', this.awesomeThings);
+    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.isLoggedIn = Auth.isLoggedIn;
+
+    $http.get('/api/polls').then(response => {
+      this.polls = response.data;
+      socket.syncUpdates('poll', this.polls);
     });
 
     $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('poll');
     });
   }
 
-  addThing() {
-    if (this.newThing) {
-      this.$http.post('/api/things', { name: this.newThing });
-      this.newThing = '';
+  addPoll() {
+    if (this.newPoll) {
+      this.$http.post('/api/polls', { name: this.newPoll });
+      this.newPoll = '';
     }
   }
 
-  deleteThing(thing) {
-    this.$http.delete('/api/things/' + thing._id);
+  deletePoll(poll) {
+    this.$http.delete('/api/polls/' + poll._id);
   }
 }
 
