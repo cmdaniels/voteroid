@@ -10,23 +10,56 @@ import User from '../api/user/user.model';
 Poll.find({}).removeAsync()
   .then(() => {
     Poll.create({
-      name: 'Development Tools',
-      createdAt: new Date()
+      name: 'Which color do you prefer?',
+      options: [{
+        answer: 'red',
+        count: 0
+      },{
+        answer: 'green',
+        count: 0
+      },{
+        answer: 'blue',
+        count: 0
+      }],
+      createdAt: new Date(),
+      createdBy: 'test@example.com'
     }, {
-      name: 'Server and Client integration',
-      createdAt: new Date()
+      name: 'Which text editor do you use?',
+      options: [{
+        answer: 'Sublime Text',
+        count: 0
+      },{
+        answer: 'WebStorm IDE',
+        count: 0
+      },{
+        answer: 'Atom.io',
+        count: 0
+      },{
+        answer: 'Other',
+        count: 0
+      }],
+      createdAt: new Date(),
+      createdBy: 'test@example.com'
     }, {
-      name: 'Smart Build System',
-      createdAt: new Date()
-    }, {
-      name: 'Modular Structure',
-      createdAt: new Date()
-    }, {
-      name: 'Optimized Build',
-      createdAt: new Date()
-    }, {
-      name: 'Deployment Ready',
-      createdAt: new Date()
+      name: 'How do you prepare your eggs?',
+      options: [{
+        answer: 'Scrambled',
+        count: 0
+      },{
+        answer: 'Hard Boiled',
+        count: 0
+      },{
+        answer: 'Poached',
+        count: 0
+      },{
+        answer: 'Fried',
+        count: 0
+      },{
+        answer: 'Other',
+        count: 0
+      }],
+      createdAt: new Date(),
+      createdBy: 'test@example.com'
     });
   });
 
