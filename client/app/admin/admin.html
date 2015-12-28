@@ -1,5 +1,12 @@
 <navbar></navbar>
 
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Admin</h1>
+    <p class="lead">Manage the application here.</p>
+  </div>
+</header>
+
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -19,11 +26,8 @@
       <ul class="list-group user-list">
         <li class="list-group-item" ng-repeat="poll in admin.polls">
     	    <div class="user-info">
-    	        <strong>{{poll.name}}</strong><br>
+    	        <strong><a href="/poll/{{poll._id}}">{{poll.name}}</a></strong><br>
     	        <span class="text-muted">Created on {{poll.createdAt | date:medium}} by {{poll.createdBy}}</span>
-              <p class="text-muted">
-                {{poll.options}}
-              </p>
     	    </div>
           <a href="#" ng-click="admin.deletePoll(poll)" class="trash">&times;</a>
         </li>

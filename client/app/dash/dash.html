@@ -1,0 +1,67 @@
+<navbar></navbar>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Dashboard</h1>
+    <p class="lead">Create polls and manage existing ones.</p>
+  </div>
+</header>
+
+<div class="container">
+  <form class="form-horizontal poll-form" ng-show="isLoggedIn()">
+    <fieldset>
+      <!-- Form Name -->
+      <h1 class="page-header">Create a new poll:</h1>
+      <div class="alert alert-warning" role="alert" ng-show="errorMessage"><strong>Warning!</strong> {{errorMessage}}</div>
+      <div class="alert alert-success" role="alert" ng-show="successMessage"><strong>Success!</strong> {{successMessage}}</div>
+      <!-- Text input-->
+      <div class="form-group">
+        <div class="col-md-1">
+          <label class="control-label" for="textinput">Question</label>
+        </div>
+        <div class="col-md-11">
+          <input id="textinput" name="textinput" type="text" placeholder="Question" class="form-control input-md" ng-model="newPollName">
+        </div>
+      </div>
+      <!-- Option input -->
+      <div class="form-group" ng-repeat="input in inputs">
+        <div class="col-md-1">
+          <label class="control-label" for="textinput" ng-show="$first">Options</label>
+        </div>
+        <div class="col-md-11">
+          <input type="text" class="form-control" placeholder="Option" ng-model="input.value">
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-1 control-label"></label>
+        <div class="col-md-11">
+          <button type="button" class="btn btn-default pull-right" ng-click="inputs.pop()">Remove Option</button>
+          <button type="button" class="btn btn-default pull-right" ng-click="inputs.push({})" style="margin-right: 5px">New Option</button>
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="submit"></label>
+        <div class="col-md-11">
+          <button type="submit" class="btn btn-primary pull-right" ng-click="addPoll()">Create Poll</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <h1 class="page-header">My polls:</h1>
+  <ul class="list-group user-list">
+    <li class="list-group-item" ng-repeat="poll in polls">
+      <div class="user-info">
+          <strong><a href="/poll/{{poll._id}}">{{poll.name}}</a></strong><br>
+          <span class="text-muted">Created on {{poll.createdAt | date:medium }}</span>
+          <span ng-repeat="option in poll.options">
+            <br>{{option.answer}} has {{option.count}} votes
+          </span>
+      </div>
+      <a href="#" ng-click="dash.deletePoll(poll)" class="trash">&times;</a>
+    </li>
+  </ul>
+</div>
+
+<footer></footer>

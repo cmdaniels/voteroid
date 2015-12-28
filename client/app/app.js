@@ -10,7 +10,8 @@ angular.module('voteroidApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'validation.match'
+  'validation.match',
+  'chart.js'
 ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
