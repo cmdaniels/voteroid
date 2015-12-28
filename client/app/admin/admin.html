@@ -20,7 +20,10 @@
         <li class="list-group-item" ng-repeat="poll in admin.polls">
     	    <div class="user-info">
     	        <strong>{{poll.name}}</strong><br>
-    	        <span class="text-muted">Created on {{poll.createdAt | date:medium}}</span>
+    	        <span class="text-muted">Created on {{poll.createdAt | date:medium}} by {{poll.createdBy}}</span>
+              <p class="text-muted">
+                {{poll.options}}
+              </p>
     	    </div>
           <a href="#" ng-click="admin.deletePoll(poll)" class="trash">&times;</a>
         </li>

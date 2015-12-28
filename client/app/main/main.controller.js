@@ -8,6 +8,8 @@ class MainController {
     this.$http = $http;
     this.polls = [];
 
+    $scope.inputs = [{}, {}];
+
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
@@ -20,15 +22,30 @@ class MainController {
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('poll');
     });
-  }
 
-  addPoll() {
-    if (this.newPoll) {
-      this.$http.post('/api/polls', {
-        name: this.newPoll,
-        createdAt: new Date().getTime()
+    $scope.addPoll = function() {
+      var valid = true;
+      $scope.inputs.forEach(function(input) {
+        if (input.value === undefined) {
+          valid = false;
+        }
       });
-      this.newPoll = '';
+      if ($scope.inputs.length >= 2 && $scope.newPollName && valid) {
+        var optionsArray = [];
+        $scope.inputs.forEach(function(input) {
+          optionsArray.push({answer: input.value, count: 0})
+        });
+        $http.post('/api/polls', {
+          name: $scope.newPollName,
+          options: optionsArray,
+          createdAt: new Date().getTime(),
+          createdBy: $scope.getCurrentUser().email
+        });
+        $scope.newPollName = '';
+        $scope.inputs = [{}, {}];
+      } else {
+        alert('Invalid! Make sure all fields are filled out.');
+      }
     }
   }
 
