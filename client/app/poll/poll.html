@@ -2,7 +2,7 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>Voteroid</h1>
+    <h1>Voter</h1>
     <p class="lead">Make polls and share with friends!</p>
   </div>
 </header>
@@ -17,7 +17,7 @@
   </form>
 
   <div ng-hide="isVoting">
-    {{pollCtrl.poll}}
+    <canvas id="bar" width="150" height="75" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-legend="legend"></canvas>
   </div>
 
   <!-- <canvas id="canvas" width="300" height="300" ng-hide="isVoting"></canvas> -->

@@ -13,13 +13,13 @@ Poll.find({}).removeAsync()
       name: 'Which color do you prefer?',
       options: [{
         answer: 'red',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'green',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'blue',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       }],
       createdAt: new Date(),
       createdBy: 'test@example.com'
@@ -27,16 +27,16 @@ Poll.find({}).removeAsync()
       name: 'Which text editor do you use?',
       options: [{
         answer: 'Sublime Text',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'WebStorm IDE',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'Atom.io',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'Other',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       }],
       createdAt: new Date(),
       createdBy: 'test@example.com'
@@ -44,19 +44,19 @@ Poll.find({}).removeAsync()
       name: 'How do you prepare your eggs?',
       options: [{
         answer: 'Scrambled',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'Hard Boiled',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'Poached',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'Fried',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       },{
         answer: 'Other',
-        count: 0
+        count: Math.floor(Math.random() * 11)
       }],
       createdAt: new Date(),
       createdBy: 'test@example.com'

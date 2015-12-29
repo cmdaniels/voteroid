@@ -8,6 +8,10 @@ class PollController {
     var app = this;
     $scope.isVoting = true;
 
+    $scope.labels = [];
+    $scope.data = [[]];
+    $scope.series = [];
+
     $http.get('/api/polls/' + $routeParams.id).then(response => {
       app.poll = response.data;
       socket.syncUpdates('poll', [app.poll]);
@@ -16,7 +20,6 @@ class PollController {
     app.vote = function() {
       $scope.isVoting = false;
       var optionsArray = [];
-      // '[{"answer":"Coke","count":1},{"answer":"Pepsi","count":0}]'
       app.poll.options.forEach(function(option) {
         if (option.answer === $scope.choice) {
           optionsArray.push({
@@ -31,10 +34,10 @@ class PollController {
           });
         }
       });
-      console.log(optionsArray);
       $http.put('/api/polls/' + $routeParams.id, optionsArray).success(function() {
-        $http.get('/api/polls/' + $routeParams.id).then(response => {
-          console.log(response.data);
+        app.poll.options.forEach(function(option) {
+          $scope.labels.push(option.answer);
+          $scope.data[0].push(option.count);
         });
       });
     };
