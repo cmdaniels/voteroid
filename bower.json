@@ -17,12 +17,13 @@
     "angular-socket-io": "~0.7.0",
     "angular-validation-match": "~1.5.2",
     "Chart.js": "~1.0.2",
-    "angular-chart.js": "~0.8.8"
+    "angular-chart.js": "~0.8.8",
+    "angular-easy-social-share": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
   },
   "resolutions": {
-    "font-awesome": "~4.4"
+    "font-awesome": ">=4.0.3"
   }
 }

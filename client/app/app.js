@@ -11,7 +11,8 @@ angular.module('voteroidApp', [
   'btford.socket-io',
   'ui.bootstrap',
   'validation.match',
-  'chart.js'
+  'chart.js',
+  'td.easySocialShare'
 ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider

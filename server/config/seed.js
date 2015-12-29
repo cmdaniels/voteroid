@@ -12,13 +12,13 @@ Poll.find({}).removeAsync()
     Poll.create({
       name: 'Which color do you prefer?',
       options: [{
-        answer: 'red',
+        answer: 'Red',
         count: Math.floor(Math.random() * 11)
       },{
-        answer: 'green',
+        answer: 'Green',
         count: Math.floor(Math.random() * 11)
       },{
-        answer: 'blue',
+        answer: 'Blue',
         count: Math.floor(Math.random() * 11)
       }],
       createdAt: new Date(),

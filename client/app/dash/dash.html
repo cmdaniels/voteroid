@@ -57,7 +57,7 @@
           <span class="text-muted">Created on {{poll.createdAt | date:medium }}</span>
           <span ng-repeat="option in poll.options">
             <br>{{option.answer}} has {{option.count}} votes
-          </span>
+          </span><br>
       </div>
       <a href="#" ng-click="dash.deletePoll(poll)" class="trash">&times;</a>
     </li>
