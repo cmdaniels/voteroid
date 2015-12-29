@@ -12,8 +12,6 @@
     <button type="button" class="btn btn-default pull-right" name="button"  ng-show="pollCtrl.isOwner()" ng-hide="pollCtrl.isEditing || !(isVoting)" ng-click="pollCtrl.toggleEdit()">Edit</button>
     <div share-square="true" share-links="Facebook" share-title="{{poll.name}}" class="social-button pull-right"></div>
     <div share-square="true" share-links="Twitter" share-title="{{poll.name}}" class="social-button pull-right"></div>
-    <div share-square="true" share-links="LinkedIn" share-title="{{poll.name}}" class="social-button pull-right"></div>
-    <div share-square="true" share-links="Google-Plus" share-title="{{poll.name}}" class="social-button pull-right"></div>
   </h2>
   <form ng-show="isVoting">
     <ul class="list-group">
