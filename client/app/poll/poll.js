@@ -6,6 +6,6 @@ angular.module('voteroidApp')
       .when('/poll/:id', {
         templateUrl: 'app/poll/poll.html',
         controller: 'PollController',
-        controllerAs: 'poll'
+        controllerAs: 'pollCtrl'
       });
   });

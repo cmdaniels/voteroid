@@ -40,7 +40,7 @@ function handleEntityNotFound(res) {
 
 function saveUpdates(updates) {
   return function(entity) {
-    var updated = _.merge(entity, updates);
+    var updated = _.extend(entity, updates);
     return updated.saveAsync()
       .spread(updated => {
         return updated;
@@ -91,6 +91,17 @@ export function update(req, res) {
     .then(saveUpdates(req.body))
     .then(responseWithResult(res))
     .catch(handleError(res));
+}
+
+// Updates an existing Poll in the DB
+export function updatePoll(req, res) {
+  Poll.update({
+    '_id': req.params.id
+  },{
+    options: req.body
+  }, {}, function() {
+    res.end('Done');
+  });
 }
 
 // Deletes a Poll from the DB

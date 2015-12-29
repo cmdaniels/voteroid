@@ -1,9 +1,26 @@
 <navbar></navbar>
 
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Voteroid</h1>
+    <p class="lead">Make polls and share with friends!</p>
+  </div>
+</header>
+
 <div class="container">
-  <p>
-    {{selectedPoll}}
-  </p>
+  <h2 class="page-header">{{pollCtrl.poll.name}}</h2>
+  <form ng-show="isVoting">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="option in pollCtrl.poll.options"><input type="radio" ng-model="$parent.choice" name="choice" value="{{option.answer}}"> &nbsp;{{option.answer}}</li>
+    </ul>
+    <button type="submit" class="btn btn-primary" ng-click="pollCtrl.vote()">Vote!</button>
+  </form>
+
+  <div ng-hide="isVoting">
+    {{pollCtrl.poll}}
+  </div>
+
+  <!-- <canvas id="canvas" width="300" height="300" ng-hide="isVoting"></canvas> -->
 </div>
 
 <footer></footer>
