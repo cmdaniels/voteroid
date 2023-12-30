@@ -60,54 +60,49 @@ function removeEntity(res) {
 }
 
 // Gets a list of Polls
-export function index(req, res) {
-  Poll.findAsync()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+export async function index(req, res) {
+  var polls = await Poll.find({});
+  res.status(200).json(polls);
 }
 
 // Gets a single Poll from the DB
-export function show(req, res) {
-  Poll.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+export async function show(req, res) {
+  var poll = await Poll.findById(req.params.id);
+  if (!poll) {
+    res.status(404).end();
+    return null;
+  }
+  res.status(200).json(poll);
 }
 
 // Creates a new Poll in the DB
 export function create(req, res) {
-  Poll.createAsync(req.body)
-    .then(responseWithResult(res, 201))
-    .catch(handleError(res));
+  Poll.create(req.body);
+  res.status(201).end();
 }
 
 // Updates an existing Poll in the DB
-export function update(req, res) {
+export async function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Poll.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-}
-
-// Updates an existing Poll in the DB
-export function updatePoll(req, res) {
-  Poll.update({
-    '_id': req.params.id
-  },{
-    options: req.body
-  }, {}, function() {
-    res.end('Done');
-  });
+  var poll = await Poll.findById(req.params.id)
+  if (!poll) {
+    res.status(404).end();
+    return null;
+  }
+  var updated = _.extend(poll, {options: req.body});
+  await Poll.replaceOne({_id: poll._id}, updated);
+  res.status(200).json(updated);
 }
 
 // Deletes a Poll from the DB
-export function destroy(req, res) {
-  Poll.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    .catch(handleError(res));
+export async function destroy(req, res) {
+  var poll = await Poll.findById(req.params.id);
+  if (!poll) {
+    res.status(404).end();
+    return null;
+  }
+  await Poll.deleteOne({_id: req.params.id})
+  res.status(204).end();
 }

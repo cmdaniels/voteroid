@@ -26,16 +26,13 @@ export function isAuthenticated() {
       validateJwt(req, res, next);
     })
     // Attach user to request
-    .use(function(req, res, next) {
-      User.findByIdAsync(req.user._id)
-        .then(user => {
-          if (!user) {
-            return res.status(401).end();
-          }
-          req.user = user;
-          next();
-        })
-        .catch(err => next(err));
+    .use(async function(req, res, next) {
+      var user = await User.findById(req.user._id)
+      if (!user) {
+        return res.status(401).end();
+      }
+      req.user = user;
+      next();
     });
 }
 

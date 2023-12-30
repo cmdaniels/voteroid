@@ -34,11 +34,7 @@ var all = {
 
   // MongoDB connection options
   mongo: {
-    options: {
-      db: {
-        safe: true
-      }
-    }
+    options: {}
   },
 
   facebook: {

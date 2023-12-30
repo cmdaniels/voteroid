@@ -7,9 +7,11 @@
 import Poll from '../api/poll/poll.model';
 import User from '../api/user/user.model';
 
-Poll.find({}).removeAsync()
-  .then(() => {
-    Poll.create({
+async function seedDatabase() {
+  try {
+    await Poll.find({});
+
+    await Poll.create({
       name: 'Which color do you prefer?',
       options: [{
         answer: 'Red',
@@ -61,17 +63,21 @@ Poll.find({}).removeAsync()
       createdAt: new Date(),
       createdBy: 'test@example.com'
     });
-  });
 
-User.find({}).removeAsync()
-  .then(() => {
-    User.createAsync({
+    await User.find({});
+
+    await User.create({
       provider: 'local',
       name: 'Test User',
       email: 'test@example.com',
       password: 'test'
-    })
-    .then(() => {
-      console.log('Finished Populating Users');
     });
-  });
+  } catch (error) {
+    console.error('Error seeding the database:', error);
+  }
+}
+
+// Call the seedDatabase function
+seedDatabase();
+
+console.log('Finished Populating Users');
