@@ -1,5 +1,11 @@
 # voteroid
 
+A NodeJS application for making polls and sharing with friends.
+
+![Poll voting preview](./voting.png)
+
+![Poll results preview](./results.png)
+
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.1.1.
 
 ## Getting Started
@@ -20,12 +26,8 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 
 3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
 
-4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
+4. Run `npm start` to start the development server.
 
 ## Build & development
 
-Run `grunt build` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `npm test` will run the unit tests with karma.
+Run `grunt build` for building and `npm start` for preview.
